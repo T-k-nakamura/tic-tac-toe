@@ -1,1 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>TIC TAC TOE</title>
+<style>
 
+    #contents,#gameTable{
+        text-align: center;
+        margin: auto;
+    }
+
+    #gameTable td {
+        width: 150px;
+        height: 150px;
+        font-size: 80px;
+        border: 5px solid #ccc;
+        text-align:center;
+    }
+    
+    #reset{
+        position: relative;
+        left:0px;
+        padding: 5px 20px;
+        font-size: 20px;
+        font-family: monospace;
+        color: red;
+        border: solid 2px red;
+        background: white;
+    }
+    
+    
+</style>
+<script>
+window.onload = function() {
+
+    //盤面初期化
+    creanTable();
+    const resetBtn = document.getElementById('reset');
+    resetBtn.addEventListener('click',creanTable);
+    
+    /*  turn 使用用途
+    *   ・ターン判定
+    *   ・ターン数表示
+    */
+    let turn = 1;
+    
+    
+    //マーク付けfunction
+    function marking(e){
+        
+        //HTML内のテーブル要素取得
+        const tds = document.getElementById('gameTable').getElementsByTagName('td');
+        
+        //クリック対象が空かどうか
+        if(e.target.innerHTML == ''){
+            /*
+            *   偶数ターンの場合、×を
+            *   奇数ターンの場合、〇を入れる。
+            *   pointer-eventsはダブルクリック時の誤作動制御用(IE11からなので、ナシなら消して良き)
+            */
+            if(turn % 2 == 0){
+                e.target.innerHTML = '×';
+                e.target.style='pointer-events:none;'
+            }else{
+                e.target.innerHTML = '〇';
+                e.target.style='pointer-events:none;'
+            }//if END  
+        }//if END
+        
+        //毎ターン判定
+        if(judge()){
+            
+            //勝利時の描写を制御
+            setTimeout(function(){window.alert( e.target.innerHTML +'の勝ち！'); } , 10);
+            
+            //すべてのtd要素のクリックイベントを削除(クリックさせなくする)
+            for(let idx = 0; idx < tds.length ; idx++){
+                tds[idx].style='pointer-events : none;';
+            }//for END
+            
+            turn = 1;
+        }else{
+            turn++;
+        }//if END
+    }//marking END
+    
+    //判定function
+    function judge(){
+        //HTML内のテーブル要素取得
+        const tds = document.getElementById('gameTable').getElementsByTagName('td');
+        
+        //判定if文(もっとベストプラクティスがあるかも？)
+        if (tds[0].innerHTML != '' && tds[0].innerHTML == tds[1].innerHTML && tds[0].innerHTML == tds[2].innerHTML) {
+			return true;
+		} else if (tds[3].innerHTML != '' && tds[3].innerHTML == tds[4].innerHTML && tds[3].innerHTML == tds[5].innerHTML) {
+			return true;
+		} else if (tds[6].innerHTML != '' && tds[6].innerHTML == tds[7].innerHTML && tds[6].innerHTML == tds[8].innerHTML) {
+			return true;
+		} else if (tds[0].innerHTML != '' && tds[0].innerHTML == tds[3].innerHTML && tds[0].innerHTML == tds[6].innerHTML) {
+			return true;
+		} else if (tds[1].innerHTML != '' && tds[1].innerHTML == tds[4].innerHTML && tds[1].innerHTML == tds[7].innerHTML) {
+			return true;
+		} else if (tds[2].innerHTML != '' && tds[2].innerHTML == tds[5].innerHTML && tds[2].innerHTML == tds[8].innerHTML) {
+			return true;
+		} else if (tds[0].innerHTML != '' && tds[0].innerHTML == tds[4].innerHTML && tds[0].innerHTML == tds[8].innerHTML) {
+			return true;
+		} else if (tds[2].innerHTML != '' && tds[2].innerHTML == tds[4].innerHTML && tds[2].innerHTML == tds[6].innerHTML) {
+			return true;
+		} else {
+			return false;
+		}//if END
+    }//judge END
+    
+    
+    //盤面初期化function
+    function creanTable(){
+        //HTML内の「ゲームテーブル」用のテーブル要素取得
+        const tds = document.getElementById('gameTable').getElementsByTagName('td');
+
+        //すべてのtd要素を初期化＆クリックイベントを追加。
+        for(let idx = 0; idx < tds.length ; idx++){
+            tds[idx].innerHTML = '';
+            tds[idx].style='pointer-events : auto;';
+            tds[idx].addEventListener('click',marking);
+        }//for END 
+    }//creanTable END 
+
+}//onload END
+</script>
+</head>
+<body>
+    <div id="contents">
+    
+        <h1>TIC TAC TOE</h1>
+        <input type="button" id="reset" value="RESET">
+        <table id="gameTable">
+            <tbody>
+                <tr><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td></tr>
+            </tbody>
+        </table>
+        
+    </div>
+</body>
+</html>
