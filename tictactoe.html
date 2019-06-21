@@ -34,17 +34,19 @@
 <script>
 window.onload = function() {
 
-    //盤面初期化
-    creanTable();
-    const resetBtn = document.getElementById('reset');
-    resetBtn.addEventListener('click',creanTable);
-    
     /*  turn 使用用途
     *   ・ターン判定
     *   ・ターン数表示
     */
     let turn = 1;
+    let num =  document.getElementById("num");
+
     
+    
+    //盤面初期化
+    cleanTable();
+    const resetBtn = document.getElementById('reset');
+    resetBtn.addEventListener('click',cleanTable);
     
     //マーク付けfunction
     function marking(e){
@@ -61,10 +63,12 @@ window.onload = function() {
             */
             if(turn % 2 == 0){
                 e.target.innerHTML = '×';
-                e.target.style='pointer-events:none;'
+                e.target.style='pointer-events:none;';
+                num.innerHTML = '〇の番です';
             }else{
                 e.target.innerHTML = '〇';
-                e.target.style='pointer-events:none;'
+                e.target.style='pointer-events:none;';
+                num.innerHTML = '×の番です';
             }//if END  
         }//if END
         
@@ -124,6 +128,9 @@ window.onload = function() {
             tds[idx].style='pointer-events : auto;';
             tds[idx].addEventListener('click',marking);
         }//for END 
+        
+        turn = 1;
+        num.innerHTML = '〇の番です';
     }//creanTable END 
 
 }//onload END
