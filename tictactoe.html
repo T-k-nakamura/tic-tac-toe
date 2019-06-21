@@ -9,13 +9,29 @@
         text-align: center;
         margin: auto;
     }
+    
+    #gameTable{
+        animation-name: openGame;
+        animation-delay: 0.5s;
+        animation-duration: 0.4s;
+        animation-timing-function: linear;
+        animation-fill-mode:backwards;
+        background: #339999;
+    }
 
     #gameTable td {
         width: 150px;
         height: 150px;
         font-size: 80px;
-        border: 5px solid #ccc;
         text-align:center;
+    }
+    
+    
+    #gameTable td:hover{
+        animation-name: borderIn;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-fill-mode:forwards;
     }
     
     #reset{
@@ -27,6 +43,17 @@
         color: red;
         border: solid 2px red;
         background: white;
+    }
+    
+    /*枠線のアニメーション*/
+    @keyframes borderIn{
+        from{ border: solid 2px white;}
+        to{ border: solid 2px black;}
+    }
+    
+    @keyframes openGame{
+        from{ width: 1px; }
+        to{ width: 450px; }
     }
     
     
@@ -60,10 +87,10 @@ window.onload = function() {
             *   pointer-eventsはダブルクリック時の誤作動制御用(IE11からなので、ナシなら消して良き)
             */
             if(turn % 2 == 0){
-                e.target.innerHTML = '×';
+                e.target.textContent = '×';
                 e.target.style='pointer-events:none;'
             }else{
-                e.target.innerHTML = '〇';
+                e.target.textContent = '〇';
                 e.target.style='pointer-events:none;'
             }//if END  
         }//if END
@@ -72,7 +99,7 @@ window.onload = function() {
         if(judge()){
             
             //勝利時の描写を制御
-            setTimeout(function(){window.alert( e.target.innerHTML +'の勝ち！'); } , 10);
+            setTimeout(function(){window.alert( e.target.textContent +'の勝ち！'); } , 10);
             
             //すべてのtd要素のクリックイベントを削除(クリックさせなくする)
             for(let idx = 0; idx < tds.length ; idx++){
@@ -141,7 +168,6 @@ window.onload = function() {
                 <tr><td></td><td></td><td></td></tr>
             </tbody>
         </table>
-        
     </div>
 </body>
 </html>
