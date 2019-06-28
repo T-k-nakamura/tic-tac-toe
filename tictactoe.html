@@ -35,16 +35,16 @@
 window.onload = function() {
 
     //盤面初期化
-    creanTable();
+    cleanTable();
     const resetBtn = document.getElementById('reset');
-    resetBtn.addEventListener('click',creanTable);
+    resetBtn.addEventListener('click',cleanTable);
     
     /*  turn 使用用途
     *   ・ターン判定
     *   ・ターン数表示
     */
     let turn = 1;
-    
+    let num =  document.getElementById("num");
     
     //マーク付けfunction
     function marking(e){
@@ -62,9 +62,11 @@ window.onload = function() {
             if(turn % 2 == 0){
                 e.target.innerHTML = '×';
                 e.target.style='pointer-events:none;'
+                num.innerHTML = '〇の番です'
             }else{
                 e.target.innerHTML = '〇';
                 e.target.style='pointer-events:none;'
+                num.innerHTML = '×の番です'
             }//if END  
         }//if END
         
@@ -82,39 +84,44 @@ window.onload = function() {
             turn = 1;
         }else{
             turn++;
+            if(turn > 9){
+                setTimeout(function(){window.alert( '引き分けです！'); } , 10);
+                turn = 1;
+            }
         }//if END
     }//marking END
-    
+        
     //判定function
     function judge(){
         //HTML内のテーブル要素取得
         const tds = document.getElementById('gameTable').getElementsByTagName('td');
         
         //判定if文(もっとベストプラクティスがあるかも？)
-        if (tds[0].innerHTML != '' && tds[0].innerHTML == tds[1].innerHTML && tds[0].innerHTML == tds[2].innerHTML) {
+        if (tds[0].innerHTML != '' && tds[0].innerHTML == tds[1].innerHTML && tds[0].innerHTML == tds[2].innerHTML) {console.log(1);
 			return true;
-		} else if (tds[3].innerHTML != '' && tds[3].innerHTML == tds[4].innerHTML && tds[3].innerHTML == tds[5].innerHTML) {
+		} else if (tds[3].innerHTML != '' && tds[3].innerHTML == tds[4].innerHTML && tds[3].innerHTML == tds[5].innerHTML) {console.log(2);
 			return true;
-		} else if (tds[6].innerHTML != '' && tds[6].innerHTML == tds[7].innerHTML && tds[6].innerHTML == tds[8].innerHTML) {
+		} else if (tds[6].innerHTML != '' && tds[6].innerHTML == tds[7].innerHTML && tds[6].innerHTML == tds[8].innerHTML) {console.log(3);
 			return true;
-		} else if (tds[0].innerHTML != '' && tds[0].innerHTML == tds[3].innerHTML && tds[0].innerHTML == tds[6].innerHTML) {
+		} else if (tds[0].innerHTML != '' && tds[0].innerHTML == tds[3].innerHTML && tds[0].innerHTML == tds[6].innerHTML) {console.log(4);
 			return true;
-		} else if (tds[1].innerHTML != '' && tds[1].innerHTML == tds[4].innerHTML && tds[1].innerHTML == tds[7].innerHTML) {
+		} else if (tds[1].innerHTML != '' && tds[1].innerHTML == tds[4].innerHTML && tds[1].innerHTML == tds[7].innerHTML) {console.log(5);
 			return true;
-		} else if (tds[2].innerHTML != '' && tds[2].innerHTML == tds[5].innerHTML && tds[2].innerHTML == tds[8].innerHTML) {
+		} else if (tds[2].innerHTML != '' && tds[2].innerHTML == tds[5].innerHTML && tds[2].innerHTML == tds[8].innerHTML) {console.log(6);
 			return true;
-		} else if (tds[0].innerHTML != '' && tds[0].innerHTML == tds[4].innerHTML && tds[0].innerHTML == tds[8].innerHTML) {
+		} else if (tds[0].innerHTML != '' && tds[0].innerHTML == tds[4].innerHTML && tds[0].innerHTML == tds[8].innerHTML) {console.log(7);
 			return true;
-		} else if (tds[2].innerHTML != '' && tds[2].innerHTML == tds[4].innerHTML && tds[2].innerHTML == tds[6].innerHTML) {
+		} else if (tds[2].innerHTML != '' && tds[2].innerHTML == tds[4].innerHTML && tds[2].innerHTML == tds[6].innerHTML) {console.log(8);
 			return true;
 		} else {
 			return false;
 		}//if END
-    }//judge END
+    }//judge END 
     
     
     //盤面初期化function
-    function creanTable(){
+    function cleanTable(){
+        
         //HTML内の「ゲームテーブル」用のテーブル要素取得
         const tds = document.getElementById('gameTable').getElementsByTagName('td');
 
@@ -125,6 +132,7 @@ window.onload = function() {
             tds[idx].addEventListener('click',marking);
         }//for END 
     }//creanTable END 
+    
 
 }//onload END
 </script>
@@ -142,6 +150,7 @@ window.onload = function() {
             </tbody>
         </table>
         
+        <p id="num">〇の番です</p>
     </div>
 </body>
 </html>
