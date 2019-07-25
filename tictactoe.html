@@ -75,57 +75,70 @@
       *   ・ターン数表示
       */
       let turn = 1;
-      let num = document.getElementById("num");
+        
+      // ①要素をidから取得(取得するidはnum)
+      let num = (----- ① ----);
 
 
 
       //盤面初期化
       cleanTable();
-      const resetBtn = document.getElementById('reset');
-      resetBtn.addEventListener('click', cleanTable);
+      
+      // ②リセットボタンのid取得
+      const resetBtn = (----- ② ----);
+        
+      // ③リセットボタンに「クリックしたら、盤面を初期化」する処理を追加する。
+      (----- ③ ----);
 
+        
+        
+        
       //マーク付けfunction
       function marking(e) {
 
-        //HTML内のテーブル要素取得
-        const tds = document.getElementById('gameTable').getElementsByTagName('td');
+        // ④HTML内のテーブル要素取得
+        const tds = (----- ④ ----).getElementsByTagName('td');
 
-        //クリック対象が空かどうか
-        if (e.target.innerHTML == '') {
+        // ⑤クリック対象が空かどうか
+        if (------ ⑤ -----) {
           /*
-          *   偶数ターンの場合、×を
-          *   奇数ターンの場合、〇を入れる。
-          *   pointer-eventsはダブルクリック時の誤作動制御用(IE11からなので、ナシなら消して良き)
+          *   ⑥偶数ターンの場合、×を
+          *   ⑦奇数ターンの場合、〇を入れる。
           */
-          if (turn % 2 == 0) {
+          if (------ ⑥ -----) {
             e.target.innerHTML = '×';
             e.target.style = 'pointer-events:none;';
             num.innerHTML = '〇の番です';
-          } else {
+          }(------ ⑦ -----){
             e.target.innerHTML = '〇';
             e.target.style = 'pointer-events:none;';
             num.innerHTML = '×の番です';
           }//if END  
         }//if END
 
-        //毎ターン判定
-        if (judge()) {
+        // ⑧毎ターン判定を行う関数を呼ぶ
+        if ((------ ⑧ -----)) {
 
           //勝利時の描写を制御
-          setTimeout(function () { window.alert(e.target.textContent + 'の勝ち！'); }, 10);
+          // ⑨アラートで「（3つ揃えた人）の勝ち！」と出力する！
+          setTimeout(function () { window.alert((------ ⑨ -----)); }, 10);
 
           //すべてのtd要素のクリックイベントを削除(クリックさせなくする)
           for (let idx = 0; idx < tds.length; idx++) {
             tds[idx].style = 'pointer-events : none;';
           }//for END
-
+            
           turn = 1;
         } else {
           turn++;
-          if (turn > 9) {
-            setTimeout(function () { window.alert('引き分けです！'); }, 10);
+          
+          // ⑩もしターンが9ターン以上になったら.....
+          if ((------ ⑩ -----)) {
+            // ⑪引き分けをアラートする
+            setTimeout(function () { window.alert((------ ⑪ -----)); }, 10);
             turn = 1;
           }
+            
         }//if END
       }//marking END
 
@@ -134,7 +147,7 @@
         //HTML内のテーブル要素取得
         const tds = document.getElementById('gameTable').getElementsByTagName('td');
 
-        //判定if文(もっとベストプラクティスがあるかも？)
+        //判定if文(ここどうしよう)
         if (tds[0].innerHTML != '' && tds[0].innerHTML == tds[1].innerHTML && tds[0].innerHTML == tds[2].innerHTML) {
           return true;
         } else if (tds[3].innerHTML != '' && tds[3].innerHTML == tds[4].innerHTML && tds[3].innerHTML == tds[5].innerHTML) {
@@ -159,14 +172,19 @@
 
       //盤面初期化function
       function cleanTable() {
-        //HTML内の「ゲームテーブル」用のテーブル要素取得
-        const tds = document.getElementById('gameTable').getElementsByTagName('td');
+        // ⑫HTML内の「ゲームテーブル」用のテーブル要素取得
+        const tds = (----- ⑫ ----).getElementsByTagName('td');
 
         //すべてのtd要素を初期化＆クリックイベントを追加。
-        for (let idx = 0; idx < tds.length; idx++) {
-          tds[idx].innerHTML = '';
-          tds[idx].style = 'pointer-events : auto;';
-          tds[idx].addEventListener('click', marking);
+        // ⑬for分を完成させてみよう
+        for ((--⑬--); (---⑬---); (--⑬--)) {
+         /*ヒント
+          *・⑫で取得したテーブルの要素を使う。
+          *・tdsは配列。
+          *・innerHTML = '';を使う。
+          *・style = 'pointer-events : auto;';を使う。
+          *・「クリックしたらmarkingする」処理を追加する。
+          */
         }//for END 
 
         turn = 1;
