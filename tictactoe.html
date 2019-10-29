@@ -100,12 +100,12 @@
         const tds = (----- ④ ----).getElementsByTagName('td');
 
         // ⑤クリック対象が空かどうか
-        if (------ ⑤ -----) {
+        if (e.target.(------ ⑤ -----)) {
           /*
           *   ⑥偶数ターンの場合、×を
           *   ⑦奇数ターンの場合、〇を入れる。
           */
-          if (------ ⑥ -----) {
+          if ((------ ⑥ -----)) {
             e.target.innerHTML = '×';
             e.target.style = 'pointer-events:none;';
             num.innerHTML = '〇の番です';
@@ -177,14 +177,18 @@
 
         //すべてのtd要素を初期化＆クリックイベントを追加。
         // ⑬for分を完成させてみよう
-        for ((--⑬--); (---⑬---); (--⑬--)) {
-         /*ヒント
-          *・⑫で取得したテーブルの要素を使う。
-          *・tdsは配列。
-          *・innerHTML = '';を使う。
-          *・style = 'pointer-events : auto;';を使う。
-          *・「クリックしたらmarkingする」処理を追加する。
-          */
+        for (let idx (--⑬--); (---⑬---); (--⑬--)) {
+
+        /*ヒント
+        *・⑫で取得したテーブルの要素を使う。
+        *・tdsは配列。
+        *・盤面の〇×を初期化する処理を追加する。
+        *・「クリックしたらmarkingする」処理を追加する。
+        */
+        
+        tds[idx].( --- ⑭ ---);
+        tds[idx].style = 'pointer-events : auto;'
+        tds[idx].( --- ⑮ --- );
         }//for END 
 
         turn = 1;
