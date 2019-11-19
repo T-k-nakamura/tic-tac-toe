@@ -84,10 +84,10 @@
       //盤面初期化
       cleanTable();
       
-      // ②リセットボタンのid取得
+      // ②リセットボタンの要素をidから取得
       const resetBtn = (----- ② ----);
         
-      // ③リセットボタンに「クリックしたら、盤面を初期化」する処理を追加する。
+      // ③リセットボタンが"クリック"された時、"盤面を初期化する処理"を行う。
       (----- ③ ----);
 
         
@@ -96,16 +96,16 @@
       //マーク付けfunction
       function marking(e) {
 
-        // ④HTML内のテーブル要素取得
+        // ④HTML内のテーブル要素をidから取得
         const tds = (----- ④ ----).getElementsByTagName('td');
 
         // ⑤クリック対象が空かどうか
-        if (e.target.(------ ⑤ -----)) {
+        if e.target.(------ ⑤ -----) {
           /*
           *   ⑥偶数ターンの場合、×を
           *   ⑦奇数ターンの場合、〇を入れる。
           */
-          if ((------ ⑥ -----)) {
+          if (------ ⑥ -----) {
             e.target.innerHTML = '×';
             e.target.style = 'pointer-events:none;';
             num.innerHTML = '〇の番です';
@@ -116,7 +116,7 @@
           }//if END  
         }//if END
 
-        // ⑧毎ターン判定を行う関数を呼ぶ
+        // ⑧勝ち負け判定を行う関数を呼ぶ
         if ((------ ⑧ -----)) {
 
           //勝利時の描写を制御
@@ -134,8 +134,8 @@
           
           // ⑩もしターンが9ターン以上になったら.....
           if ((------ ⑩ -----)) {
-            // ⑪引き分けをアラートする
-            setTimeout(function () { window.alert((------ ⑪ -----)); }, 10);
+            // 引き分けをアラートする
+            setTimeout(function () { window.alert("引き分けです!!"); }, 10);
             turn = 1;
           }
             
@@ -144,10 +144,10 @@
 
       //判定function
       function judge() {
-        //HTML内のテーブル要素取得
+        //HTML内のテーブル要素をidから取得
         const tds = document.getElementById('gameTable').getElementsByTagName('td');
 
-        //判定if文(ここどうしよう)
+        //判定if文（〇もしくは×が3つ揃ったか判定）
         if (tds[0].innerHTML != '' && tds[0].innerHTML == tds[1].innerHTML && tds[0].innerHTML == tds[2].innerHTML) {
           return true;
         } else if (tds[3].innerHTML != '' && tds[3].innerHTML == tds[4].innerHTML && tds[3].innerHTML == tds[5].innerHTML) {
@@ -172,23 +172,22 @@
 
       //盤面初期化function
       function cleanTable() {
-        // ⑫HTML内の「ゲームテーブル」用のテーブル要素取得
-        const tds = (----- ⑫ ----).getElementsByTagName('td');
+        // ⑪HTML内のテーブル要素をidから取得
+        const tds = (----- ⑪ ----).getElementsByTagName('td');
 
         //すべてのtd要素を初期化＆クリックイベントを追加。
-        // ⑬for分を完成させてみよう
-        for (let idx (--⑬--); (---⑬---); (--⑬--)) {
+        // ⑫for分を完成させてみよう
+        for (let idx (--⑫--); (---⑫---); (--⑫--)) {
 
         /*ヒント
-        *・⑫で取得したテーブルの要素を使う。
-        *・tdsは配列。
-        *・盤面の〇×を初期化する処理を追加する。
-        *・「クリックしたらmarkingする」処理を追加する。
-        */
-        
-        tds[idx].( --- ⑭ ---);
+         *・⑫で取得したテーブルの要素を使う。
+         *・tdsは配列。
+         *・⑬盤面の〇×を初期化する処理を追加する。
+         *・⑭tdsが"クリック"された時、"markingする処理"を行う。
+         */
+        tds[idx].( --- ⑬ ---);
         tds[idx].style = 'pointer-events : auto;'
-        tds[idx].( --- ⑮ --- );
+        tds[idx].( --- ⑭ --- );
         }//for END 
 
         turn = 1;
