@@ -87,7 +87,7 @@
       //リセットボタンの要素をidから取得
       const resetBtn = document.getElementById('reset');
         
-      //①リセットボタンが"クリック"された時、"盤面を初期化する処理"を行う。
+      //リセットボタンが"クリック"された時、"盤面を初期化する処理"を行う。
       resetBtn.addEventListener('click', cleanTable);
 
         
@@ -102,14 +102,14 @@
         //クリック対象が空かどうか
         if (e.target.innerHTML == '') {
           /*
-          *偶数ターンの場合、×を
-          *奇数ターンの場合、〇を入れる。
+          *①偶数ターンの場合、×を
+          *②奇数ターンの場合、〇を入れる。
           */
-          if (turn % 2 == 0) {
+          if (------ ① -----) {
             e.target.innerHTML = '×';
             e.target.style = 'pointer-events:none;';
             num.innerHTML = '〇の番です';
-          } else {
+          } (------ ② -----) {
             e.target.innerHTML = '〇';
             e.target.style = 'pointer-events:none;';
             num.innerHTML = '×の番です';
@@ -176,8 +176,8 @@
         const tds = document.getElementById('gameTable').getElementsByTagName('td');
 
         //すべてのtd要素を初期化＆クリックイベントを追加。
-        //①for分を完成させてみよう
-        for (------ ① -----) {
+        //for分を完成させてみよう
+        for (let idx = 0; idx < tds.length; idx++) {
 
         /*ヒント
          *・for文で取得したテーブルの要素を使う。
