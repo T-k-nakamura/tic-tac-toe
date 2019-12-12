@@ -4,4 +4,4 @@ TCMOBILE > jobtraining > tic-tac-toe 上で右クリック
 git bash hereを選択、以下コマンドを選択してコピペ
 
 ・問題レベル変更 lvに任意のレベル追加
-git checkout lv
+git checkout -f lv
